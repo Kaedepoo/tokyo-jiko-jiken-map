@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>東京事故・事件マップ</title>
+<style>
+  :root{--bg:#0e1118;--card:#161a27;--line:#252a3a;--text:#dde;--sub:#8b93a3;--crime:#ff3b4e;--traffic:#4f8fe2}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Helvetica Neue',-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif;
+       background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column}
+  #siteNav{display:flex;align-items:center;background:#0a0c12;border-bottom:1px solid #1c2030;padding:0 14px;height:44px;flex-shrink:0}
+  #siteNav .brand{font-weight:800;color:#fff;font-size:14px;letter-spacing:.03em;text-decoration:none;margin-right:18px}
+  #siteNav .brand small{color:#5a6270;font-weight:400;font-size:10px;margin-left:3px;letter-spacing:.15em}
+  #siteNav a.tab{color:#99a2b3;text-decoration:none;font-size:13px;padding:0 14px;height:100%;display:flex;align-items:center;border-bottom:2px solid transparent}
+  #siteNav a.tab:hover{color:#fff}
+
+  .hero{max-width:900px;margin:0 auto;padding:56px 24px 24px;text-align:center}
+  .hero h1{font-size:34px;font-weight:800;letter-spacing:.04em;color:#fff;line-height:1.25}
+  .hero p{margin-top:14px;color:var(--sub);font-size:15px;line-height:1.8}
+  .grid{max-width:900px;margin:8px auto 0;padding:16px 24px 40px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .card{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:12px;
+        padding:24px 22px;text-decoration:none;color:inherit;transition:transform .15s,border-color .15s,box-shadow .15s;position:relative;overflow:hidden}
+  .card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px}
+  .card.crime::before{background:var(--crime)}
+  .card.traffic::before{background:var(--traffic)}
+  .card:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,0,0,.4)}
+  .card.crime:hover{border-color:var(--crime)}
+  .card.traffic:hover{border-color:var(--traffic)}
+  .card .tag{font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700}
+  .card.crime .tag{color:var(--crime)}
+  .card.traffic .tag{color:var(--traffic)}
+  .card h2{font-size:22px;font-weight:800;color:#fff;margin:8px 0 6px}
+  .card .desc{font-size:13px;color:var(--sub);line-height:1.7;flex:1}
+  .card .meta{margin-top:16px;padding-top:14px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline}
+  .card .num{font-size:26px;font-weight:800;color:#fff;font-variant-numeric:tabular-nums}
+  .card .num small{font-size:12px;color:var(--sub);font-weight:400;margin-left:4px}
+  .card .go{font-size:13px;font-weight:700}
+  .card.crime .go{color:var(--crime)}
+  .card.traffic .go{color:var(--traffic)}
+  footer{margin-top:auto;padding:20px 24px 30px;text-align:center;color:#556;font-size:11.5px;line-height:1.8;border-top:1px solid #1c2030}
+  @media(max-width:640px){.hero{padding:36px 18px 16px}.hero h1{font-size:25px}.grid{grid-template-columns:1fr;padding:12px 18px 32px}}
+</style>
+</head>
+<body>
+<div id="siteNav">
+  <a class="brand" href="index.html">東京事故・事件マップ<small>TOKYO</small></a>
+  <a class="tab" href="crime.html">犯罪マップ</a>
+  <a class="tab" href="traffic.html">交通事故マップ</a>
+</div>
+
+<div class="hero">
+  <h1>東京事故・事件マップ</h1>
+  <p>東京都内で公開されているオープンデータをもとに、事件と事故の発生状況を地図で可視化します。<br>見たいマップを選んでください。</p>
+</div>
+
+<div class="grid">
+  <a class="card crime" href="crime.html">
+    <span class="tag">Crime</span>
+    <h2>犯罪マップ</h2>
+    <div class="desc">警視庁「メールけいしちょう」オープンデータをもとに、声かけ・不審者、ひったくり、詐欺などの発生地点を地図化。種別・期間で絞り込めます。</div>
+    <div class="meta"><span class="num">3,321<small>件</small></span><span class="go">開く →</span></div>
+  </a>
+  <a class="card traffic" href="traffic.html">
+    <span class="tag">Traffic</span>
+    <h2>交通事故マップ</h2>
+    <div class="desc">警察庁「交通事故統計」オープンデータをもとに、2019〜2024年の東京都内の交通事故を地図化。年・事故類型・重大度・月で絞り込め、住所検索にも対応。</div>
+    <div class="meta"><span class="num">175,364<small>件</small></span><span class="go">開く →</span></div>
+  </a>
+</div>
+
+<footer>
+  出典：警視庁 メールけいしちょう オープンデータ（CC BY 4.0）／ 警察庁 交通事故統計情報のオープンデータ（CC BY 4.0）<br>
+  地図：Leaflet／OpenStreetMap／CARTO　・　住所検索：国土地理院API
+</footer>
+</body>
+</html>
