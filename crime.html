@@ -194,6 +194,14 @@ select:hover { border-color:#ff3b4e; color:#fff; }
 @media(max-width:640px){#siteNav{padding:0 8px;height:40px}#siteNav .brand{font-size:12px;margin-right:10px}
  #siteNav .brand small{display:none}#siteNav a.tab{padding:0 10px;font-size:12px}}
 </style>
+<style id="mobPanelFix">
+@media(max-width:640px){
+  .panel-toggle{width:auto!important;height:36px!important;border-radius:18px!important;
+    padding:0 15px!important;font-size:13px!important;font-weight:700!important;
+    box-shadow:0 3px 10px rgba(0,0,0,.5)!important;letter-spacing:.02em}
+  .panel-toggle.pt-open{background:rgba(255,255,255,.16)!important;color:#fff!important;border-color:rgba(255,255,255,.35)!important}
+}
+</style>
 </head>
 <body>
 <div id="siteNav"><a class="brand" href="index.html">東京事故・事件マップ<small>TOKYO</small></a><a class="tab active" style="border-bottom-color:#ff3b4e" href="crime.html">犯罪マップ</a><a class="tab" href="traffic.html">交通事故マップ</a></div>
@@ -535,6 +543,29 @@ document.getElementById('addrInput').addEventListener('keydown', e => {
   document.getElementById('addrError').style.display = 'none';
 });
 applyFilters();
+</script>
+<script id="mobPanelScript">
+(function(){
+  var info=document.querySelector('.info'),legend=document.querySelector('.legend'),
+      bI=document.getElementById('toggleInfo'),bL=document.getElementById('toggleLegend');
+  if(!info||!legend||!bI||!bL)return;
+  var mq=window.matchMedia('(max-width:640px)');
+  function lbls(){
+    var io=!info.classList.contains('hidden'),lo=!legend.classList.contains('hidden');
+    bI.innerHTML=io?'\u2715\u00a0閉じる':'\u2139\u00a0情報';
+    bL.innerHTML=lo?'\u2715\u00a0閉じる':'\u2261\u00a0凡例';
+    bI.classList.toggle('pt-open',io);bL.classList.toggle('pt-open',lo);
+  }
+  function apply(){
+    if(mq.matches){info.classList.add('hidden');legend.classList.add('hidden');}
+    else{info.classList.remove('hidden');legend.classList.remove('hidden');}
+    lbls();
+  }
+  bI.addEventListener('click',function(){setTimeout(lbls,0);});
+  bL.addEventListener('click',function(){setTimeout(lbls,0);});
+  if(mq.addEventListener)mq.addEventListener('change',apply);else mq.addListener(apply);
+  apply();
+})();
 </script>
 </body>
 </html>
